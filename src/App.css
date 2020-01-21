@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+
+*{
+  box-sizing:border-box;
+}
+html{
+  height:100%;
+  /* position:fixed;
+  top:0;left:0;bottom:0;right:0; */
+}
+body{
+  overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;
+  height:100%;
+  display:flex;
+  /* for responsive alignment and layout. Check out bootstrap, a css library that 
+  bases alignment on 12 columns. */
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(145deg, #ff7e5f, #feb47b); color:black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main-title{
+  font-size:15px;
+  /* will apply to just this class */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header{
+  /* will apply style to every single element on a page */
+  position:absolute;
+  top:0;
+  /* you can use top left right and bottom only if you have position:absolute */
+  left:0;
+  width:100%;
+  height: 24px;
+  /* it's ^ to make it more responsive rather than adjust in padding */
+  border-bottom:1px solid white;
+  color: #eb5b38;
+  padding: 0px 10px;
+  /* top right bottom left for 4^*/
+  /* top right+left bottom for 3 */
+  background:rgba(255, 255, 255, 0.5);
+  display:flex;
+  align-items:center;
+  /* vertical align!!!! yay for flex
+  YOU CAN'T use align without FLEX */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo{
+  height:18px;
+  /* you usually ALWAYS want to use classes, but in this case it's just me working on it 
+  so it's okay for now */
+  margin-right: 10px;
+}
+
+.text-input{
+  position:absolute;
+  padding: 0 5px;
+  /* 0 top and bottom, 5 left and right */
+  bottom:0px;
+  left:0px;
+  width:100%;
+  height:32px;
+  border:none;
+  border-top:1px solid white;
+  background:rgba(255, 255, 255, 0.2);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items:center;
+}
+
+.button{
+  position:absolute;
+  cursor:pointer;
+  right:0;
+  height:32px;
+  border-radius:4px;
+  border: 1px solid white;
+  background: #ff7e5f;
+  font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.button:focus{
+  outline:none;
+  border: 1px solid black;
+}
+
+.button:disabled{
+  background: grey;
+  position:absolute;
+  cursor:pointer;
+  right:0;
+  height:32px;
+  border-radius:4px;
+  border: 1px solid white;
+  font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.messages{
+  height:calc(100vh - 96px); 
+  /* 96px = height of the header and footer */
+  width: 100vw;
+  position: absolute;
+  top: 48px;
+  left: 0px;
+  /* ^makes a difference on mobile Safari */
+  display:flex;
+  flex-direction: column-reverse;
+  /* makes the messages show up in reverse */
+  overflow-y: scroll;
+  /* if there is anything that overflows, put a scrollbar vertically */
+}
+
+.message-wrap{
+  width:100%;
+}
+
+.message{
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  background: black;
+  margin: 5px;
+  border-radius: 5px;
+  
 }
