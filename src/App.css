@@ -108,26 +108,44 @@ header{
   left: 0px;
   /* ^makes a difference on mobile Safari */
   display:flex;
-  padding-right: 50%;
   flex-direction: column-reverse;
   /* makes the messages show up in reverse */
-  overflow-y: scroll;
+  overflow-y: auto;
   /* if there is anything that overflows, put a scrollbar vertically */
    
 }
 
 .message-wrap{
-  width:fit-content;
-  padding-right: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message-wrap[from="me"]{
+  justify-content: flex-end;
 }
 
 .message{
+  position:relative;
+  margin-top: 10px;
+}
+
+.msg-text{
   color: #727272;
   background: white;
   margin: 6px;
   border-radius: 4px;
-  padding: 0 6px;
-  
+  padding: 3px 6px;
+  /* font-size: 14px; */
+  font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.msg-name{
+  font-size: 11px;
+  /* top: -9px; */
+  margin: 6px;
+  font-size: 12px;
+  font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .edit-username{
@@ -175,3 +193,4 @@ header{
   margin-right:12px;
   font-size:1.1rem;
 }
+

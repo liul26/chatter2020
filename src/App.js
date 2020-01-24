@@ -1,30 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
-import {db} from './db'
+import {db,useDB} from './db'
 import NamePicker from './namePicker.js'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-function App() {
-  const [messages, setMessages] = useState([])
+function App(){
+  useEffect(()=>{
+    const {pathname} = window.location
+    if(pathname.length<2) window.location.pathname='home'
+  },[])
+  return <BrowserRouter>
+    <Route path="/:room" component={Room}/>
+  </BrowserRouter>
+}
+
+function Room(props) {
+  const{room} = props.match.params
   const [name, setName] = useState('')
+  const messages = useDB(room)
   // for a use state ALWAYS use const
   // ^ thats how a useState ALWAYS looks
   // useState([]) <-- [] is an empty array. you start with an empty array
   // messages - state variable, starts equalling []
   // setMessages - function, changes the variable
-
   console.log(messages)
-
-  useEffect(()=>{
-    db.listen({
-      receive: m=> {
-        setMessages(current=> [m, ...current])
-        },
-    })
-  }, [])
-
   return <main>
     {/* the word return enters HTML */}
-
     <header> 
       <img className="logo"
         alt="logo"
@@ -36,8 +37,12 @@ function App() {
 
     <div className="messages"> 
       {messages.map((m,i)=>{
-        return <div key={i} className="message-wrap">
-          <div className="message">{m.text}</div>
+        return <div key={i} className="message-wrap"
+          from={m.name===name?'me':'you'}>
+            <div className="message">
+              <div className="msg-name">{m.name}</div>
+              <div className="msg-text">{m.text}</div>
+            </div>
         </div>
         // key=index of an array. its a react thing to have "key" to see which message you wnat to delete.
       })}
@@ -58,7 +63,7 @@ function App() {
       // take all the items in the array, push them into a new array, and add the var to the beginning
       // put text, then messages because you want the messages to show at the bottom. display in backwards order because the messages will hide under the scrollable area
         db.send({
-          text, name, ts: new Date()
+          text, name, ts: new Date(), room
         })
     }}/>
      {/* console.log("here is my message"m) */}
