@@ -3,12 +3,13 @@
 }
 html{
   height:100%;
+  overflow-x:hidden;
   /* position:fixed;
   top:0;left:0;bottom:0;right:0; */
+  /* font-size:13px; */
 }
 
 body{
-  overflow:hidden;
   font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;
   height:100%;
   display:flex;
@@ -26,12 +27,12 @@ body{
 
 header{
   /* will applystyle to every single element on a page */
-  position:absolute;
+  /* position:absolute; */
   top:0;
   /* you can use top left right and bottom only if you have position:absolute */
   left:0;
-  width:100%;
-  height: 40px;
+  width:100vw;
+  height: 4rem;
   /* it's ^ to make it more responsive rather than adjust in padding */
   border-bottom:1px solid white;
   color: #eb5b38;
@@ -43,7 +44,7 @@ header{
   align-items:center;
   /* vertical align!!!! yay for flex
   YOU CAN'T use align without FLEX */
-  font-size: 20px;
+  font-size: 1.8rem;
 }
 
 .logo{
@@ -60,7 +61,7 @@ header{
   bottom:0px;
   left:0px;
   width:100%;
-  height:32px;
+  height:50px;
   border:none;
   border-top:1px solid white;
   background:rgba(255, 255, 255, 0.2);
@@ -68,8 +69,17 @@ header{
   align-items:center;
 }
 
-.text-input:focus{
-  border: blue;
+.input-field{
+  width: 90%;
+  position:absolute;
+  left:50px;
+  height: 80%;
+  border-radius: 15px;
+}
+
+.input-field:focus{
+  box-shadow: 0 0 0 1pt blue;
+  outline:none;
 }
 
 .button{
@@ -100,11 +110,10 @@ header{
 }
 
 .messages{
-  height:calc(100vh - 96px); 
+  height:calc(100% - 8rem); 
   /* 96px = height of the header and footer */
   width: 100vw;
   position: absolute;
-  top: 48px;
   left: 0px;
   /* ^makes a difference on mobile Safari */
   display:flex;
@@ -112,7 +121,6 @@ header{
   /* makes the messages show up in reverse */
   overflow-y: auto;
   /* if there is anything that overflows, put a scrollbar vertically */
-   
 }
 
 .message-wrap{
